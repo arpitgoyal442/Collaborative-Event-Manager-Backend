@@ -91,13 +91,11 @@ const signIn = async (req, res,next) => {
 
     try {
         const { email, password } = req.body;
-
         let user = await db.query(`SELECT * from users where email=$1`, [email])
         user = user.rows[0];
 
         if (!user)
             return res.send("User Don't Exist");
-
 
         let compareResult = await passwordUtility.comparePassword(password, user.password_hash);
 
@@ -116,7 +114,6 @@ const signIn = async (req, res,next) => {
 
 
     } catch (e) {
-        
         req.status(500);
         req.data=e;
         next();
