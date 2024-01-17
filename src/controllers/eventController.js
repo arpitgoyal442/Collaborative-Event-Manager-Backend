@@ -1,10 +1,13 @@
+const { json } = require("body-parser");
 
 
 
 const createEvent=async(req,res,next)=>{
     try{
 
-       console.log(req.body)
+       console.log( JSON.parse(req.body.jData))
+       console.log(req.body.jData)
+       console.log(req.files)
        next();
        
     }catch(e){
